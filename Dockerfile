@@ -22,9 +22,11 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 
 COPY . .
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY schematool.sh /usr/local/bin/schematool.sh
+RUN chmod +x /usr/local/bin/schematool.sh
+
+ENTRYPOINT ["/usr/local/bin/schematool.sh"]
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+#CMD ["apache2-foreground"]

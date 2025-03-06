@@ -11,6 +11,27 @@ use App\Domain\ValueObject\UserId;
 use App\Domain\ValueObject\Name;
 use App\Domain\ValueObject\Email;
 use App\Domain\ValueObject\Password;
+use Doctrine\DBAL\Types\Type;
+use App\Infrastructure\Persistence\Doctrine\Types\UserIdType;
+use App\Infrastructure\Persistence\Doctrine\Types\NameType;
+use App\Infrastructure\Persistence\Doctrine\Types\PasswordType;
+use App\Infrastructure\Persistence\Doctrine\Types\EmailType;
+
+if (!Type::hasType(UserIdType::NAME)) {
+    Type::addType(UserIdType::NAME, UserIdType::class);
+}
+
+if (!Type::hasType(NameType::NAME)) {
+    Type::addType(NameType::NAME, NameType::class);
+}
+
+if (!Type::hasType(PasswordType::NAME)) {
+    Type::addType(PasswordType::NAME, PasswordType::class);
+}
+
+if (!Type::hasType(EmailType::NAME)) {
+    Type::addType(EmailType::NAME, EmailType::class);
+}
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
